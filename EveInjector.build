@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project name="EveInjector" default="Build" basedir=".">
+	<description>Inject arbitrary Python into Eve</description>
+	<property name="debug" value="true" overwrite="false" />
+	<target name="clean" description="Clean build directory">
+		<delete failonerror="false">
+			<fileset>
+				<include name="Obj\*.dll" />
+				<include name="Obj\*.exe" />
+				<include name="Obj\*.*db" />
+				<include name="Obj\*.asm" />
+				<include name="Obj\*.bin" />
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="EveInjector" description="Build EveInjector" depends="">
+		<mkdir dir="Obj" />
+		<csc target="exe" output="Obj/EveInjector.exe">
+			<sources>
+				<include name="EveInjector.cs" />
+			</sources>
+			<references>
+				<include name="Obj/EasyHook.dll" />
+			</references>
+			<arg line="-keyfile:SigningKey.snk" />
+		</csc>
+		
+		<exec program="gacutil">
+			<arg value="/i" />
+			<arg value="Obj/EveInjector.exe" />
+		</exec>
+		
+		<booc target="library" output="Obj/EIInject.dll">
+			<sources>
+				<include name="EIInject.boo" />
+			</sources>
+			<references>
+				<include name="Obj/EasyHook.dll" />
+			</references>
+			<arg line="-keyfile:SigningKey.snk" />
+		</booc>
+	</target>
+	
+	<target name="Build" description="Build EveInjector" depends="EveInjector" />
+</project>
