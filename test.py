@@ -26,8 +26,8 @@ print dir(ui)
 import eve
 eve = eve.eve
 gameui = eve.LocalSvc('gameui')
-gameui.MessageBox('Foo!')
-# eve.Message('Foo!') # Equivalent
+eve.Message('Foo!')
+#gameui.MessageBox('Foo!') # Equivalent
 
 # Set window title
 eve.triapp.title = 'foo!'

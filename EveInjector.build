@@ -21,7 +21,7 @@
 				<include name="EveInjector.cs" />
 			</sources>
 			<references>
-				<include name="Obj/EasyHook.dll" />
+				<include name="EasyHook.dll" />
 			</references>
 			<arg line="-keyfile:SigningKey.snk" />
 		</csc>
@@ -36,7 +36,7 @@
 				<include name="EIInject.boo" />
 			</sources>
 			<references>
-				<include name="Obj/EasyHook.dll" />
+				<include name="EasyHook.dll" />
 			</references>
 			<arg line="-keyfile:SigningKey.snk" />
 		</booc>
